@@ -218,8 +218,10 @@ class TextToSpeech:
                                           model_dim=1024,
                                           heads=16, number_text_tokens=255, start_text_token=255, checkpointing=False,
                                           train_solo_embeddings=False).cpu().eval()
-            read_token = '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'
-            ar_path = hf_hub_download(repo_id="cmarius46/day-2", filename="custom_language_gpt.pth", cache_dir=models_dir, token=read_token)
+            # read_token = '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'
+            # ar_path = hf_hub_download(repo_id="cmarius46/day-2", filename="custom_language_gpt.pth", cache_dir=models_dir, token=read_token)
+            # ar_path = get_model_path('autoregressive.pth', models_dir)
+            ar_path = '4500_gpt.pth'
             self.autoregressive.load_state_dict(torch.load(ar_path), strict=False)
             self.autoregressive.post_init_gpt2_config(use_deepspeed=use_deepspeed, kv_cache=kv_cache, half=self.half)
             
